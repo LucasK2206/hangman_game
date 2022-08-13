@@ -1,0 +1,35 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  background: #262626;
+  color: #fff;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.game {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+.game__display {
+  border: 5px solid #fff;
+  min-width: 300px;
+  min-height: 400px;
+}
+.game__box {
+  width: 300px;
+  padding: 10px;
+}/*# sourceMappingURL=hangman_style.css.map */

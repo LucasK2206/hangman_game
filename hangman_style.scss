@@ -1,0 +1,34 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+$color_white: #fff;
+
+html{
+    font-size: 10px;
+}
+body{
+    background: #262626;
+    color:$color_white;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+.game{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    &__display{
+        border: 5px solid $color_white;
+        min-width: 300px;
+        min-height: 400px;
+    }
+    &__box{
+        width: 300px;
+        padding: 10px;
+    }
+}
