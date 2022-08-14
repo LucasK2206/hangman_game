@@ -1,4 +1,4 @@
-const userLetter = document.querySelector("#user-data");
+const userLetter = document.querySelector("#user-letter");
 const errorCode = document.querySelector("#error-code");
 const availableLettersBox = document.querySelector("#availableLetters");
 const usedLetters = document.querySelector("#usedLetters");
@@ -7,8 +7,9 @@ const gamePasswdBox = document.querySelector("#game__display--passwd");
 const reg = new RegExp("^[a-z]*$");
 
 let availableLettersAll = [];
-
+let numberOfChances = 5;
 const passwd = "ala ma kota";
+let passwdCopy = [];
 const allLetters = "abcdefghijklmnopqrstuvwxyz";
 const tabOfAllLetters = [...allLetters];
 
@@ -21,30 +22,29 @@ const initGame = function(){
     hashPasswd();
     addavailableLetters();
     getDataFromUser();
-
 }
 
 const getDataFromUser = function(){
     userLetter.addEventListener("change", (letter) => {
-        let singleLetter = letter.target.value.toLowerCase();
-        if(reg.test(singleLetter) == true && singleLetter !== "" && singleLetter !== " "){
+        let singleUserLetter = letter.target.value.toLowerCase();
+        if(reg.test(singleUserLetter) == true && singleUserLetter !== "" && singleUserLetter !== " "){
             errorCode.textContent = "Podaj literę z przedziału A-Z, a-z";
-            console.log(singleLetter);
-            addavailableLetters(singleLetter);
+            addavailableLetters(singleUserLetter);
+
         }else {
-            singleLetter = "";
-            console.log(errorCode);
             errorCode.textContent = " Błąd: Podaj literę z przedziału A-Z, a-z";
         }
+        letter.target.value = "";
     })
 }
-const addavailableLetters = function(singleLetter) {
-    if(singleLetter){
+const addavailableLetters = function(singleUserLetter) {
+    if(singleUserLetter){
         availableLettersAll.forEach((value, index) => {
-            if(singleLetter === value){
+            if(singleUserLetter === value){
                 availableLettersAll.splice(index, 1);
                 availableLettersBox.textContent = availableLettersAll.join(" ");
                 usedLetters.textContent += value + " ";
+                checkLetterInPasswd(singleUserLetter);
             }
         })
     }
@@ -57,14 +57,36 @@ const addavailableLetters = function(singleLetter) {
     }
 }
 const hashPasswd = function() {
-    let passwd1 = "";
     [...passwd].forEach(letter => {
         if(letter !== " "){
-            passwd1+= "-"
+            passwdCopy.push("-");
         }else {
-            passwd1+=" ";
+            passwdCopy.push(" ");
         }
     })
+    gamePasswdBox.textContent = passwdCopy.join("");
+}
+const checkLetterInPasswd = function(singleUserLetter) {
+    let passwdCopyCheacker = [...passwdCopy];
 
-    gamePasswdBox.textContent = passwd1;
+    [...passwd].forEach((letter, index) => {
+        if(letter === singleUserLetter){
+            passwdCopy[index] = letter;
+        }
+    })
+    if(passwdCopyCheacker.join("") === passwdCopy.join("")){
+        numberOfChances--;
+    }
+    console.log(numberOfChances);
+
+    gamePasswdBox.textContent = passwdCopy.join("");
+    passwordComplianceChecker();
+}
+
+const passwordComplianceChecker = function() {
+    if(passwd === passwdCopy.join("")){
+        console.log("Wygrana!");
+    } else if(numberOfChances === 0){
+        console.log("Przegrana")
+    }
 }
