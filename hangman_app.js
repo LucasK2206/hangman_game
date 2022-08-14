@@ -1,3 +1,5 @@
+import { passwordObj } from './passwordsObj.js'
+
 const userLetter = document.querySelector("#user-letter");
 const errorCode = document.querySelector("#error-code");
 const availableLettersBox = document.querySelector("#availableLetters");
@@ -8,7 +10,7 @@ const reg = new RegExp("^[a-z]*$");
 
 let availableLettersAll = [];
 let numberOfChances = 5;
-const passwd = "ala ma kota";
+let passwd = "";
 let passwdCopy = [];
 const allLetters = "abcdefghijklmnopqrstuvwxyz";
 const tabOfAllLetters = [...allLetters];
@@ -16,12 +18,21 @@ const tabOfAllLetters = [...allLetters];
 
 document.addEventListener("DOMContentLoaded", () => {
     initGame();
-
 })
 const initGame = function(){
+    drawPassword();
     hashPasswd();
     addavailableLetters();
     getDataFromUser();
+}
+const drawPassword = function() {
+    let minNbOfPasswds = 1;
+    let maxNbOfPasswds = Object.keys(passwordObj)[Object.keys(passwordObj).length-1];
+    console.log(maxNbOfPasswds)
+    let passwordNumber = Math.floor(Math.random()*(maxNbOfPasswds - minNbOfPasswds) + minNbOfPasswds);
+    passwd = passwordObj[passwordNumber];
+    passwd = passwd.toLowerCase();
+
 }
 
 const getDataFromUser = function(){
@@ -84,7 +95,7 @@ const checkLetterInPasswd = function(singleUserLetter) {
 }
 
 const passwordComplianceChecker = function() {
-    if(passwd === passwdCopy.join("")){
+    if(passwd.trim() === passwdCopy.join("").trim()){
         console.log("Wygrana!");
     } else if(numberOfChances === 0){
         console.log("Przegrana")
