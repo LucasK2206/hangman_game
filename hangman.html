@@ -11,25 +11,34 @@
 <body>
     <div class="game">
         <div class="game__display">
-            <div class="game__display--passwd" id="game__display--passwd">
+            <div class="game__display--passwd">
 
             </div>
-
+            <div class="game__display--content">
+                Pozostałe próby:<br>
+                    <span class="chance-left"></span>
+            </div>
         </div>
         <div class="game__box">
             <div class="game__box--availableletters">
-                DOSĘPNE LITERY: <span id="availableLetters"></span>
+                DOSĘPNE LITERY: <span class="available-letters"></span>
             </div>
             <div class="game__box--usedletters">
-                UŻYTE LITERY: <span id="usedLetters"></span>
+                UŻYTE LITERY: <span class="used-letters"></span>
 
             </div>
             <label for="user-data">
-                <span id="error-code">Podaj literę z przedziału A-Z, a-z:</span><br>
+                <span class="error-code">Podaj literę z przedziału A-Z, a-z:</span><br>
             </label>
-            <input type="text" name="user-value" class="user-letter" id="user-letter" maxlength="1">
+            <input type="text" name="user-value" class="user-letter" maxlength="1">
 
         </div>
+        <div class="game-over game-disabled">
+            <span class="game-passwd-disp"></span><br>
+            <span class="game-result"></span><br>
+            <button class="reset-game">RESET</button>
+        </div>
+
     </div>
 </body>
 </html>
