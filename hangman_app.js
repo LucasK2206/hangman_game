@@ -106,12 +106,12 @@ const passwordComplianceChecker = function() {
     if(passwd.trim() === passwdCopy.join("").trim()){
         console.log("Wygrana!");
         gameOver.classList.toggle("game-disabled");
-        endScreenDisp.textContent = "Wygrana! \n hasło to:";
+        endScreenDisp.textContent = "Wygrana! hasło to:";
         endScreenPasswd.textContent = passwd;
 
     } else if(numberOfChances === 0){
         console.log("Przegrana");
-        endScreenDisp.textContent = "Przegrana :/ \n hasło to:"
+        endScreenDisp.textContent = "Przegrana :/ hasło to:"
         endScreenPasswd.textContent = passwd;
         gameOver.classList.toggle("game-disabled");
     }
