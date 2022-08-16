@@ -43,7 +43,7 @@ const drawPassword = function() {
 }
 
 const getDataFromUser = function(){
-    userLetter.addEventListener("change", (letter) => {
+    userLetter.addEventListener("input", (letter) => {
         let singleUserLetter = letter.target.value.toLowerCase();
         if(reg.test(singleUserLetter) == true && singleUserLetter !== "" && singleUserLetter !== " "){
             errorCode.textContent = "Podaj literę z przedziału A-Z, a-z";
@@ -53,6 +53,7 @@ const getDataFromUser = function(){
             errorCode.textContent = " Błąd: Podaj literę z przedziału A-Z, a-z";
         }
         letter.target.value = "";
+        userLetter.placeholder = `${singleUserLetter}`;
     })
 }
 const addavailableLetters = function(singleUserLetter) {
